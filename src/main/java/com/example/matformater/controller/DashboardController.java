@@ -1,18 +1,23 @@
 package com.example.matformater.controller;
 
 import com.example.matformater.ImageConverterApp;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Objects;
+import java.util.Optional;
 
 public class DashboardController {
 
@@ -110,16 +115,42 @@ public class DashboardController {
     private void exitButtonPressed(ActionEvent event){
         System.out.println("Exit button pressed");
 
+        if (isOkay()){
+            Platform.exit();
+            System.exit(0);
+        }
+
+    }
+
+    /**
+     * This function is called when the exit button is pressed
+     *It collects a user confirmation on closing an alert box
+     * @return
+     */
+    private Boolean isOkay(){
+        System.out.println("isOkay function called to confirm user input");
+
+        Boolean isOkay = false;
+
         Alert alert = new Alert(Alert.AlertType.NONE);
 
-        alert.setAlertType(Alert.AlertType.CONFIRMATION);
-        alert.setHeaderText("Warning");
+        alert.setAlertType(Alert.AlertType.WARNING);
+        alert.setHeaderText("Please confirm:");
         alert.setContentText("Are you sure to exit the application?");
 
-        //change the icon of the alert button
+        ButtonType okay = new ButtonType("Okay");
+        ButtonType cancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+        alert.getButtonTypes().setAll(okay,cancel);
 
 
-        alert.show();
+
+        Optional<ButtonType> userChoice = alert.showAndWait();
+
+        if (userChoice.isPresent() && userChoice.get() == okay)
+            isOkay = true;
+
+        return isOkay;
 
     }
 
