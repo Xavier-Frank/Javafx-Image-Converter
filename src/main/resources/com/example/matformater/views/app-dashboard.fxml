@@ -18,9 +18,9 @@
       <Pane layoutX="844.0" layoutY="1.0" prefHeight="350.0" prefWidth="269.0" rotate="-135.0" style="-fx-background-color: #68479F; -fx-background-radius: 60;" AnchorPane.rightAnchor="-143.0" AnchorPane.topAnchor="1.0" />
       <AnchorPane prefHeight="533.0" prefWidth="269.0" style="-fx-background-color: #393351;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox layoutY="164.0" prefHeight="369.0" prefWidth="269.0" style="-fx-padding: 0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="164.0">
+            <VBox layoutX="7.0" layoutY="143.0" prefHeight="369.0" prefWidth="269.0" style="-fx-padding: 0;" AnchorPane.bottomAnchor="21.0" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="143.0">
                <children>
-                  <Button fx:id="resultsButton" alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="45.0" prefWidth="269.0" style="-fx-background-radius: 15 0 0 15;" styleClass="resultsFolderBtn" stylesheets="@../css/style.css" text="Results Folder" textFill="#e8e8e8">
+                  <Button fx:id="resultsButton" alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#resultsButtonPressed" prefHeight="45.0" prefWidth="269.0" style="-fx-background-radius: 15 0 0 15;" styleClass="resultsFolderBtn" stylesheets="@../css/style.css" text="Results Folder" textFill="#e8e8e8">
                      <graphic>
                         <ImageView fitHeight="36.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -34,7 +34,7 @@
                         <Insets left="5.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="developersButton" alignment="BOTTOM_LEFT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="269.0" style="-fx-background-radius: 10 0 0 15;" styleClass="aboutUsButton" stylesheets="@../css/style.css" text="Developers" textFill="WHITE">
+                  <Button fx:id="developersButton" alignment="BOTTOM_LEFT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#developerButtonPressed" prefHeight="49.0" prefWidth="269.0" style="-fx-background-radius: 10 0 0 15;" styleClass="aboutUsButton" stylesheets="@../css/style.css" text="Developers" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="36.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -48,7 +48,7 @@
                         <Insets left="5.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="feedbackButton" alignment="BOTTOM_LEFT" layoutX="10.0" layoutY="59.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="269.0" style="-fx-background-radius: 10 0 0 15;" styleClass="feedbackButton" stylesheets="@../css/style.css" text="Feedback" textFill="#f5f5f5">
+                  <Button fx:id="feedbackButton" alignment="BOTTOM_LEFT" layoutX="10.0" layoutY="59.0" mnemonicParsing="false" onAction="#feedBackButtonPressed" prefHeight="49.0" prefWidth="269.0" style="-fx-background-radius: 10 0 0 15;" styleClass="feedbackButton" stylesheets="@../css/style.css" text="Feedback" textFill="#f5f5f5">
                      <graphic>
                         <ImageView fitHeight="36.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -62,7 +62,7 @@
                         <Insets left="5.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="rateusButton" alignment="BOTTOM_LEFT" layoutX="10.0" layoutY="104.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="269.0" style="-fx-background-radius: 10 0 0 15;" styleClass="feedbackButton" stylesheets="@../css/style.css" text="Rate Us " textFill="#f5f5f5">
+                  <Button fx:id="rateusButton" alignment="BOTTOM_LEFT" layoutX="10.0" layoutY="104.0" mnemonicParsing="false" onAction="#rateusButtonPressed" prefHeight="49.0" prefWidth="269.0" style="-fx-background-radius: 10 0 0 15;" styleClass="feedbackButton" stylesheets="@../css/style.css" text="Rate Us " textFill="#f5f5f5">
                      <graphic>
                         <ImageView fitHeight="36.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -104,75 +104,79 @@
             </Pane>
          </children>
       </AnchorPane>
-      <Pane fx:id="bodyPane" layoutX="301.0" layoutY="21.0" AnchorPane.bottomAnchor="21.0" AnchorPane.leftAnchor="301.0" AnchorPane.rightAnchor="21.0" AnchorPane.topAnchor="21.0">
+      <Pane fx:id="contextArea" layoutX="269.0" prefHeight="533.0" prefWidth="701.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="269.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button fx:id="compressButton" contentDisplay="TOP" layoutX="29.0" layoutY="27.0" mnemonicParsing="false" onAction="#compressPhotosButtonPressed" prefHeight="206.0" prefWidth="257.0" stylesheets="@../css/style.css" text="COMPRESS PHOTOS" textFill="WHITE">
-               <styleClass>
-                  <String fx:value="compressButton" />
-                  <String fx:value="button-grow" />
-               </styleClass>
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-               <graphic>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <effect>
-                        <Blend mode="RED" />
-                     </effect>
-                     <image>
-                        <Image url="@../icons/compress%20icon.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="resizeButton" contentDisplay="TOP" layoutX="343.0" layoutY="27.0" mnemonicParsing="false" onAction="#resizePhotosButtonPressed" prefHeight="206.0" prefWidth="257.0" stylesheets="@../css/style.css" text="RESIZE PHOTOS" textFill="WHITE">
-               <styleClass>
-                  <String fx:value="resizeButton" />
-                  <String fx:value="button-grow" />
-               </styleClass>
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-               <graphic>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../icons/resize%20icon.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="cropButton" contentDisplay="TOP" layoutX="29.0" layoutY="263.0" mnemonicParsing="false" onAction="#cropPhotosButtonPressed" prefHeight="206.0" prefWidth="257.0" stylesheets="@../css/style.css" text="CROP PHOTOS" textFill="WHITE">
-               <styleClass>
-                  <String fx:value="changeFormatButton" />
-                  <String fx:value="button-grow" />
-               </styleClass>
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-               <graphic>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../icons/crop%20icon.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="formatButton" contentDisplay="TOP" layoutX="343.0" layoutY="263.0" mnemonicParsing="false" onAction="#changeFormatButtonPressed" prefHeight="206.0" prefWidth="257.0" stylesheets="@../css/style.css" text="CHANGE FORMAT" textFill="WHITE">
-               <styleClass>
-                  <String fx:value="cropButton" />
-                  <String fx:value="button-grow" />
-               </styleClass>
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-               <graphic>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../icons/change%20icon.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
+            <Pane prefHeight="539.0" prefWidth="702.0">
+               <children>
+                  <Button fx:id="compressButton" contentDisplay="TOP" layoutX="29.0" layoutY="27.0" mnemonicParsing="false" onAction="#compressPhotosButtonPressed" prefHeight="225.0" prefWidth="286.0" stylesheets="@../css/style.css" text="COMPRESS PHOTOS" textFill="WHITE">
+                     <styleClass>
+                        <String fx:value="compressButton" />
+                        <String fx:value="button-grow" />
+                     </styleClass>
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <effect>
+                              <Blend mode="RED" />
+                           </effect>
+                           <image>
+                              <Image url="@../icons/compress%20icon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="resizeButton" contentDisplay="TOP" layoutX="390.0" layoutY="27.0" mnemonicParsing="false" onAction="#resizePhotosButtonPressed" prefHeight="225.0" prefWidth="286.0" stylesheets="@../css/style.css" text="RESIZE PHOTOS" textFill="WHITE">
+                     <styleClass>
+                        <String fx:value="resizeButton" />
+                        <String fx:value="button-grow" />
+                     </styleClass>
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/resize%20icon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="cropButton" contentDisplay="TOP" layoutX="29.0" layoutY="283.0" mnemonicParsing="false" onAction="#cropPhotosButtonPressed" prefHeight="225.0" prefWidth="286.0" stylesheets="@../css/style.css" text="CROP PHOTOS" textFill="WHITE">
+                     <styleClass>
+                        <String fx:value="changeFormatButton" />
+                        <String fx:value="button-grow" />
+                     </styleClass>
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/crop%20icon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="formatButton" contentDisplay="TOP" layoutX="380.0" layoutY="283.0" mnemonicParsing="false" onAction="#changeFormatButtonPressed" prefHeight="225.0" prefWidth="286.0" stylesheets="@../css/style.css" text="CHANGE FORMAT" textFill="WHITE">
+                     <styleClass>
+                        <String fx:value="cropButton" />
+                        <String fx:value="button-grow" />
+                     </styleClass>
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/change%20icon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </Pane>
          </children>
       </Pane>
    </children>
