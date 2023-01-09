@@ -106,7 +106,7 @@
       </AnchorPane>
       <Pane fx:id="contextArea" layoutX="269.0" prefHeight="533.0" prefWidth="701.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="269.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Pane prefHeight="539.0" prefWidth="702.0">
+            <Pane fx:id="paneWithImageFunctions" prefHeight="539.0" prefWidth="702.0">
                <children>
                   <Button fx:id="compressButton" contentDisplay="TOP" layoutX="29.0" layoutY="27.0" mnemonicParsing="false" onAction="#compressPhotosButtonPressed" prefHeight="225.0" prefWidth="286.0" stylesheets="@../css/style.css" text="COMPRESS PHOTOS" textFill="WHITE">
                      <styleClass>

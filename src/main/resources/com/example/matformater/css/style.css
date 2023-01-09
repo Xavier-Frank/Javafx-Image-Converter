@@ -29,7 +29,12 @@
    -fx-background-color:  #68479F;
     -fx-cursor: hand;
 }
+.back-button:hover{
+     -fx-background-color:  #68479F;
+     -fx-cursor: hand;
+}
 .compressButton{
+
 
 }
 .resizeButton{

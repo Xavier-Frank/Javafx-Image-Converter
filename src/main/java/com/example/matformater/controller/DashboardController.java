@@ -46,6 +46,8 @@ public class DashboardController {
     private Button exitButton;
 
     @FXML
+    private Pane paneWithImageFunctions;
+    @FXML
     private Button feedbackButton;
 
     @FXML
@@ -237,6 +239,12 @@ public class DashboardController {
     @FXML
     private void resultsButtonPressed(ActionEvent actionEvent){
         System.out.println("Results button pressed");
+
+
+    }
+    @FXML
+    private void backButtonPressed(ActionEvent actionEvent){
+        System.out.println("Back button pressed");
 
 
     }
