@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" maxHeight="533.0" maxWidth="970.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="533.0" prefWidth="970.0" style="-fx-background-color: #2F2B43;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.matformater.controller.DashboardController">
+<AnchorPane fx:id="root" maxHeight="533.0" maxWidth="970.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="533.0" prefWidth="970.0" style="-fx-background-color: #2F2B43;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"  fx:controller="com.example.matformater.controller.DashboardController">
    <children>
       <Pane layoutX="91.0" layoutY="350.0" prefHeight="282.0" prefWidth="234.0" rotate="-66.5" style="-fx-background-color: #68479F; -fx-background-radius: 60;" AnchorPane.bottomAnchor="-99.0" AnchorPane.leftAnchor="91.0" />
       <Pane layoutX="844.0" layoutY="1.0" prefHeight="350.0" prefWidth="269.0" rotate="-135.0" style="-fx-background-color: #68479F; -fx-background-radius: 60;" AnchorPane.rightAnchor="-143.0" AnchorPane.topAnchor="1.0" />
