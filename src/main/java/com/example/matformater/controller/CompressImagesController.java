@@ -1,6 +1,7 @@
 package com.example.matformater.controller;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -28,7 +29,7 @@ import java.util.concurrent.atomic.AtomicReference;
 public class CompressImagesController {
 
     @FXML
-    private Button PreviousImageButton;
+    private Button previousImageButton;
 
     @FXML
     private Button backButton;
@@ -76,7 +77,8 @@ public class CompressImagesController {
         List<File> files = event.getDragboard().getFiles();
 
         AtomicInteger imageIndex = new AtomicInteger(0);
-        AtomicReference<Image> image = new AtomicReference<>(new Image(new FileInputStream(files.get(0))));
+        int k = imageIndex.intValue();
+        AtomicReference<Image> image = new AtomicReference<>(new Image(new FileInputStream(files.get(k))));
 
         imageViewPromptText.setVisible(false);
         compressImagesImageView.setImage(image.get());
@@ -85,7 +87,100 @@ public class CompressImagesController {
         AtomicInteger i = new AtomicInteger(1);
         imageNumbers.setText(String.valueOf(i.get()));
 
+        // check if next image button is pressed to load the next image in the list
+        nextImageButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                    try {
+                        setNextImage(imageIndex, i, files, image);
+                    } catch (FileNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
+            }
+        });
+
+        // check if previous image button is pressed to load the previous image in the list
+        previousImageButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                try {
+                    setPreviousImage(imageIndex, i, files, image);
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+
+
     }
+
+    /**
+     * This method sets the next image in the image view
+     *
+     * @param imageIndex image index to be set to get the image view
+     * @param i the image numbers the bottom of the image view
+     * @param files list containing the image files
+     * @param image the image to be set to the view
+     * @throws FileNotFoundException
+     */
+    private void setNextImage(AtomicInteger imageIndex, AtomicInteger i, List<File> files,AtomicReference<Image> image) throws FileNotFoundException {
+            if (imageIndex.get() > files.size()) {
+
+                i.incrementAndGet();
+                imageNumbers.setText(String.valueOf(i));
+
+                imageIndex.incrementAndGet();
+                int k = imageIndex.intValue();
+                image = new AtomicReference<Image>(new Image(new FileInputStream(files.get(k))));
+                compressImagesImageView.setImage(image.get());
+
+                System.out.println("Current image index is : " + imageIndex);
+            } else {
+                imageNumbers.setText(String.valueOf(files.size()));
+                Alert alert = new Alert(Alert.AlertType.NONE);
+                alert.setAlertType(Alert.AlertType.WARNING);
+                alert.setTitle("Warning");
+                alert.setContentText("No more images");
+                alert.setHeaderText("Error loading images!");
+                alert.setGraphic(new ImageView(getClass().getResource("../icons/warning-gif.gif").toString()));
+
+                alert.show();
+            }
+    }
+    /**
+     * This method sets the previous image in the image view
+     *
+     * @param imageIndex image index to be set to get the image view
+     * @param i the image numbers the bottom of the image view
+     * @param files list containing the image files
+     * @param image the image to be set to the view
+     * @throws FileNotFoundException
+     */
+    private void setPreviousImage(AtomicInteger imageIndex, AtomicInteger i, List<File> files,AtomicReference<Image> image) throws FileNotFoundException {
+        if(imageIndex.get() > 0 ){
+            i.decrementAndGet();
+            imageNumbers.setText(String.valueOf(i));
+
+            imageIndex.decrementAndGet();
+            int k = imageIndex.intValue();
+            image = new AtomicReference<>(new Image(new FileInputStream(files.get(k))));
+            compressImagesImageView.setImage(image.get());
+
+            System.out.println("Current image index is: " + image);
+        }else {
+            imageNumbers.setText(String.valueOf(1));
+            Alert alert = new Alert(Alert.AlertType.NONE);
+            alert.setAlertType(Alert.AlertType.WARNING);
+            alert.setTitle("Warning");
+            alert.setContentText("No more images");
+            alert.setHeaderText("Error loading images!");
+            alert.setGraphic(new ImageView(getClass().getResource("../icons/warning-gif.gif").toString()));
+
+            alert.show();
+        }
+    }
+
+
     @FXML
     private void backButtonPressed(ActionEvent actionEvent) throws IOException {
         System.out.println("Back button pressed");
@@ -123,25 +218,40 @@ public class CompressImagesController {
 
         List<File> selectedFiles = fileChooser.showOpenMultipleDialog(stage);
 
-        int imageIndex = 0;
-
-        Image image = new Image(new FileInputStream(selectedFiles.get(imageIndex)));
+        AtomicInteger imageIndex = new AtomicInteger(0);
+        int k = imageIndex.intValue();
+        AtomicReference<Image> image = new AtomicReference<>(new  Image(new FileInputStream(selectedFiles.get(k))));
 
         imageViewPromptText.setVisible(false);
-        compressImagesImageView.setImage(image);
+        compressImagesImageView.setImage(image.get());
 
         //for image numbering
-        int i = 1;
+        AtomicInteger i = new AtomicInteger(1);
         imageNumbers.setText(String.valueOf(i));
 
-        if (nextImageButton.isPressed()){
-            i++;
-            imageNumbers.setText(String.valueOf(i));
+        // check if next image button is pressed to load the next image in the list
+        nextImageButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                try {
+                    setNextImage(imageIndex, i, selectedFiles, image);
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
 
-            imageIndex++;
-            image = new Image(new FileInputStream(selectedFiles.get(imageIndex)));
-            compressImagesImageView.setImage(image);
-        }
+        //check if previous imaage button is pressed to load previous image
+        previousImageButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                try {
+                    setPreviousImage(imageIndex, i, selectedFiles, image);
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
     }
 
 }

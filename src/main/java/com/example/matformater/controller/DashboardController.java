@@ -181,9 +181,7 @@ public class DashboardController {
         alert.setContentText("Are you sure to exit the application?");
 
         //set custom image to the alert box
-        Image image = new Image(Objects.requireNonNull(getClass().getResource("../icons/warning-gif.gif")).toExternalForm());
-        ImageView imageView = new ImageView(image);
-        alert.setGraphic(imageView);
+        alert.setGraphic(new ImageView(getClass().getResource("../icons/warning-gif.gif").toString()));
 
         ButtonType okay = new ButtonType("Okay");
         ButtonType cancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
