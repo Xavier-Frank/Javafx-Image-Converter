@@ -124,7 +124,7 @@ public class CompressImagesController {
      * @throws FileNotFoundException
      */
     private void setNextImage(AtomicInteger imageIndex, AtomicInteger i, List<File> files,AtomicReference<Image> image) throws FileNotFoundException {
-            if (imageIndex.get() > files.size()) {
+            if (imageIndex.get() < files.size()) {
 
                 i.incrementAndGet();
                 imageNumbers.setText(String.valueOf(i));
@@ -179,7 +179,6 @@ public class CompressImagesController {
             alert.show();
         }
     }
-
 
     @FXML
     private void backButtonPressed(ActionEvent actionEvent) throws IOException {
