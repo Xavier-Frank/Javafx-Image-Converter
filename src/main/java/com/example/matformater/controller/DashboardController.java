@@ -84,6 +84,7 @@ public class DashboardController {
         contextArea.setVisible(true);
 
 
+
         //load a new scene
 //        root  = FXMLLoader.load(getClass().getResource("../views/compress-photos.fxml"));
 //        stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();

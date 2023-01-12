@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -21,15 +22,14 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URL;
 import java.util.List;
 import java.util.Objects;
+import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
-public class CompressImagesController {
-
-    @FXML
-    private Button previousImageButton;
+public class CompressImagesController implements Initializable {
 
     @FXML
     private Button backButton;
@@ -41,19 +41,40 @@ public class CompressImagesController {
     private Button compressAndSaveButton;
 
     @FXML
-    private Label imageViewPromptText;
+    private ImageView compressImagesImageView;
 
     @FXML
-    private ImageView compressImagesImageView;
+    private Label imageNameLabel;
 
     @FXML
     private Label imageNumbers;
 
     @FXML
+    private Label imageSizeLabel;
+
+    @FXML
+    private Label imageTypeLabel;
+
+    @FXML
+    private Label imageViewPromptText;
+
+    @FXML
+    private Label nameLabel;
+
+    @FXML
     private Button nextImageButton;
 
     @FXML
+    private Button previousImageButton;
+
+    @FXML
     private Pane root;
+
+    @FXML
+    private Label sizeLabel;
+
+    @FXML
+    private Label typeLabel;
 
     @FXML
     private Button uploadImageButton;
@@ -253,4 +274,10 @@ public class CompressImagesController {
         });
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        nameLabel.setVisible(false);
+        typeLabel.setVisible(false);
+        sizeLabel.setVisible(false);
+    }
 }
